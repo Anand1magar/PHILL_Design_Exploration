@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Neutrals" subtitle="Grayscale ramp — text, surfaces, borders" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-ui); }
+  .row { display:flex; gap:6px; }
+  .sw { flex:1; }
+  .chip { height:56px; border-radius:8px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+  .name { font-size:10px; font-weight:700; color:var(--color-text-default); margin-top:6px; }
+</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+  const steps = ['--neutral-0','--neutral-50','--neutral-100','--neutral-200','--neutral-300','--neutral-400','--neutral-500','--neutral-600','--neutral-800','--neutral-950'];
+  const cs = getComputedStyle(document.documentElement);
+  document.getElementById('r').innerHTML = steps.map(v => {
+    const c = cs.getPropertyValue(v).trim();
+    return `<div class="sw"><div class="chip" style="background:${c}"></div><div class="name">${v.replace('--','')}</div></div>`;
+  }).join('');
+</script>
+</body></html>

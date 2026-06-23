@@ -1,0 +1,21 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Spacing Scale" subtitle="4pt base — gaps & padding" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:24px; background:#fff; font-family:var(--font-ui); }
+  .row { display:flex; gap:16px; align-items:flex-end; }
+  .item { text-align:center; }
+  .bar { background:var(--color-brand); border-radius:3px; width:100%; }
+  .cell { width:44px; }
+  .n { font-size:10px; font-weight:700; color:var(--color-text-default); margin-top:6px; }
+</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+  const steps = [['1',4],['2',8],['3',12],['4',16],['5',20],['6',24],['8',32],['10',40],['12',48]];
+  document.getElementById('r').innerHTML = steps.map(([n,px]) =>
+    `<div class="item cell"><div class="bar" style="height:${px}px"></div><div class="n">${n}<br>${px}px</div></div>`
+  ).join('');
+</script>
+</body></html>

@@ -1,0 +1,29 @@
+:root {
+  /* ── Font families ── */
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Weights ── */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* ── Type scale (size / line-height) ──
+     Lato body text drives the product. Labels are bold + uppercase. */
+  --text-display-size: 45.5px;   --text-display-lh: 65px;     /* page name / hero */
+  --text-h1-size: 36px;          --text-h1-lh: 44px;
+  --text-h2-size: 24px;          --text-h2-lh: 32px;          /* patient name */
+  --text-h3-size: 18px;          --text-h3-lh: 28px;          /* card titles */
+  --text-body-lg-size: 16px;     --text-body-lg-lh: 24px;
+  --text-body-size: 14px;        --text-body-lh: 20px;        /* default body */
+  --text-label-size: 12px;       --text-label-lh: 16px;       /* uppercase eyebrow */
+  --text-caption-size: 10px;     --text-caption-lh: 15px;     /* meta / key labels */
+
+  /* ── Letter spacing ── */
+  --tracking-label: 0.6px;       /* uppercase eyebrows */
+  --tracking-tight: -0.3px;      /* key/value micro labels */
+}

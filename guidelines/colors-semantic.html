@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Semantic Tokens" subtitle="Text, surface & border roles" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-ui); }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .item { display:flex; align-items:center; gap:10px; }
+  .chip { width:30px; height:30px; border-radius:7px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1); flex-shrink:0; }
+  .t { font-size:11px; font-weight:700; color:var(--color-text-default); }
+  .v { font-size:9.5px; color:var(--color-text-secondary); font-family:var(--font-body); }
+</style></head>
+<body>
+<div class="grid" id="r"></div>
+<script>
+  const toks = ['--color-text-default','--color-text-secondary','--color-text-link','--color-text-danger','--color-text-success','--color-text-warning','--color-surface-default','--color-surface-secondary','--color-surface-muted','--color-border-muted','--color-border-default','--color-border-strong'];
+  const cs = getComputedStyle(document.documentElement);
+  document.getElementById('r').innerHTML = toks.map(v => {
+    const c = cs.getPropertyValue(v).trim();
+    return `<div class="item"><div class="chip" style="background:${c}"></div><div><div class="t">${v.replace('--color-','')}</div><div class="v">${c}</div></div></div>`;
+  }).join('');
+</script>
+</body></html>

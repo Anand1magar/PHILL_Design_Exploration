@@ -1,0 +1,10 @@
+_ds_bundle.js  --> 
+
+_ds_bundle.js is the compiled, browser-ready version of all the design system components
+ bundled into a single file.
+
+ Source files (components/)	Bundle (_ds_bundle.js)
+What you edit	What the browser runs
+JSX + ES modules	Plain JS, no imports needed
+Source of truth	Must be kept in sync manually
+That's why when I added the link intent to Button.jsx, I also had to patch _ds_bundle.js — otherwise the browser would still be running the old version and the change would have no effect.

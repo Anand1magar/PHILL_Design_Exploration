@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Inputs, Select & Radio" subtitle="Labeled fields, dropdown, radio group" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; background: var(--color-app-bg); font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; align-items: end; }
+  .radios { display: flex; gap: 24px; align-items: center; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Input, Select, Radio } = window.PHILDesignSystem_bffd2d;
+function Demo() {
+  const [paType, setPaType] = React.useState('standard');
+  return (
+    <div className="grid">
+      <Input label="CMM Key" placeholder="Enter CMM key..." />
+      <Input label="Member ID" defaultValue="U88294022" />
+      <Select label="Select Insurance Provider" options={['United Healthcare CM','Aetna','Cigna']} placeholder="Select option" />
+      <Input label="Group" defaultValue="" error placeholder="Required" />
+      <div style={{ gridColumn: '1 / -1' }}>
+        <div style={{ font: 'var(--weight-bold) 14px var(--font-body)', color: 'var(--color-text-secondary)', marginBottom: 10 }}>Prior Authorization Type</div>
+        <div className="radios">
+          <Radio name="pa" value="standard" label="Standard" checked={paType==='standard'} onChange={()=>setPaType('standard')} />
+          <Radio name="pa" value="urgent" label="Urgent" checked={paType==='urgent'} onChange={()=>setPaType('urgent')} />
+          <Radio name="pa" value="appeal" label="Appeal" checked={paType==='appeal'} onChange={()=>setPaType('appeal')} />
+          <Radio name="pa" value="x" label="Disabled" disabled />
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

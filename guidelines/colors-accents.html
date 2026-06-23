@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Accent Scales" subtitle="Blue (actions), green, red, amber, purple" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-ui); }
+  .ramp { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .lab { width:60px; font-size:11px; font-weight:700; color:var(--color-text-default); }
+  .chips { display:flex; gap:6px; flex:1; }
+  .chip { flex:1; height:30px; border-radius:6px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+</style></head>
+<body>
+<div id="r"></div>
+<script>
+  const fams = {
+    Blue:['--blue-100','--blue-300','--blue-400','--blue-500','--blue-600','--blue-700'],
+    Green:['--green-100','--green-200','--green-400','--green-600','--green-800','--green-900'],
+    Red:['--red-100','--red-300','--red-400','--red-500','--red-700','--red-800'],
+    Amber:['--amber-100','--amber-400','--amber-500','--amber-600','--amber-600','--amber-600'],
+    Purple:['--purple-100','--purple-400','--purple-600','--purple-600','--purple-400','--purple-100'],
+  };
+  const cs = getComputedStyle(document.documentElement);
+  document.getElementById('r').innerHTML = Object.entries(fams).map(([n,arr]) =>
+    `<div class="ramp"><div class="lab">${n}</div><div class="chips">${arr.map(v=>`<div class="chip" style="background:${cs.getPropertyValue(v).trim()}"></div>`).join('')}</div></div>`
+  ).join('');
+</script>
+</body></html>

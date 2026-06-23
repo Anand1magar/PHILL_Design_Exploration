@@ -1,0 +1,1334 @@
+{
+    "namespace": "PHILDesignSystem_bffd2d",
+    "components": [
+        {
+            "name": "Button",
+            "sourcePath": "components/core/Button.jsx"
+        },
+        {
+            "name": "Icon",
+            "sourcePath": "components/core/Icon.jsx"
+        },
+        {
+            "name": "ICON_NAMES",
+            "sourcePath": "components/core/Icon.jsx"
+        },
+        {
+            "name": "StatusPill",
+            "sourcePath": "components/core/StatusPill.jsx"
+        },
+        {
+            "name": "Tag",
+            "sourcePath": "components/core/Tag.jsx"
+        },
+        {
+            "name": "Alert",
+            "sourcePath": "components/feedback/Alert.jsx"
+        },
+        {
+            "name": "CommentBox",
+            "sourcePath": "components/feedback/CommentBox.jsx"
+        },
+        {
+            "name": "CommentItem",
+            "sourcePath": "components/feedback/CommentBox.jsx"
+        },
+        {
+            "name": "ProgressBar",
+            "sourcePath": "components/feedback/ProgressBar.jsx"
+        },
+        {
+            "name": "FileUpload",
+            "sourcePath": "components/forms/FileUpload.jsx"
+        },
+        {
+            "name": "Input",
+            "sourcePath": "components/forms/Input.jsx"
+        },
+        {
+            "name": "Radio",
+            "sourcePath": "components/forms/Radio.jsx"
+        },
+        {
+            "name": "Select",
+            "sourcePath": "components/forms/Select.jsx"
+        },
+        {
+            "name": "Avatar",
+            "sourcePath": "components/layout/Avatar.jsx"
+        },
+        {
+            "name": "Card",
+            "sourcePath": "components/layout/Card.jsx"
+        },
+        {
+            "name": "KeyValue",
+            "sourcePath": "components/layout/KeyValue.jsx"
+        },
+        {
+            "name": "AppHeader",
+            "sourcePath": "components/navigation/AppHeader.jsx"
+        }
+    ],
+    "startingPoints": [
+        {
+            "name": "ops_dashboard",
+            "path": "ui_kits/ops_dashboard/index.html",
+            "previewPath": "ui_kits/ops_dashboard/index.html",
+            "kind": "screen",
+            "section": "Screens",
+            "subtitle": "Prior-auth operations dashboard",
+            "viewport": "1440x860"
+        }
+    ],
+    "cards": [
+        {
+            "path": "guidelines/logo.html",
+            "group": "Brand",
+            "viewport": "700x200",
+            "subtitle": "PHIL wordmark, mark, identity circle",
+            "name": "Logo & Avatar"
+        },
+        {
+            "path": "guidelines/colors-accents.html",
+            "group": "Colors",
+            "viewport": "700x180",
+            "subtitle": "Blue (actions), green, red, amber, purple",
+            "name": "Accent Scales"
+        },
+        {
+            "path": "guidelines/colors-brand.html",
+            "group": "Colors",
+            "viewport": "700x150",
+            "subtitle": "PHIL's teal scale; teal-400 is the brand anchor",
+            "name": "Brand — Teal"
+        },
+        {
+            "path": "guidelines/colors-neutrals.html",
+            "group": "Colors",
+            "viewport": "700x160",
+            "subtitle": "Grayscale ramp — text, surfaces, borders",
+            "name": "Neutrals"
+        },
+        {
+            "path": "guidelines/colors-semantic.html",
+            "group": "Colors",
+            "viewport": "700x200",
+            "subtitle": "Text, surface & border roles",
+            "name": "Semantic Tokens"
+        },
+        {
+            "path": "components/core/Button.card.html",
+            "group": "Components",
+            "viewport": "700x300",
+            "subtitle": "Intents, sizes, icon & disabled",
+            "name": "Button"
+        },
+        {
+            "path": "components/core/TagsStatus.card.html",
+            "group": "Components",
+            "viewport": "700x320",
+            "subtitle": "Chips, PA status pills, line icons",
+            "name": "Tags, Status & Icons"
+        },
+        {
+            "path": "components/feedback/Feedback.card.html",
+            "group": "Components",
+            "viewport": "700x360",
+            "subtitle": "Exception notice, SLA tracker, PA Queue log",
+            "name": "Alert, Progress & Comments"
+        },
+        {
+            "path": "components/forms/FileUpload.card.html",
+            "group": "Components",
+            "viewport": "700x340",
+            "subtitle": "Dashed dropzone with prompt + action",
+            "name": "File Upload"
+        },
+        {
+            "path": "components/forms/Forms.card.html",
+            "group": "Components",
+            "viewport": "700x300",
+            "subtitle": "Labeled fields, dropdown, radio group",
+            "name": "Inputs, Select & Radio"
+        },
+        {
+            "path": "components/layout/Layout.card.html",
+            "group": "Components",
+            "viewport": "700x340",
+            "subtitle": "Detail surface with labeled rows",
+            "name": "Card, KeyValue & Avatar"
+        },
+        {
+            "path": "components/navigation/AppHeader.card.html",
+            "group": "Components",
+            "viewport": "1000x120",
+            "subtitle": "Teal brand top bar with actions + avatar",
+            "name": "App Header"
+        },
+        {
+            "path": "ui_kits/ops_dashboard/index.html",
+            "group": "Ops Dashboard",
+            "viewport": "1440x860",
+            "subtitle": "Prior-auth ops console — interactive",
+            "name": "PA Dashboard"
+        },
+        {
+            "path": "guidelines/radii.html",
+            "group": "Spacing",
+            "viewport": "700x150",
+            "subtitle": "4 tags · 8 inputs · 12 alerts · 16 cards · pill",
+            "name": "Radii"
+        },
+        {
+            "path": "guidelines/shadows.html",
+            "group": "Spacing",
+            "viewport": "700x150",
+            "subtitle": "Card, input ring, dropdown shadows",
+            "name": "Elevation"
+        },
+        {
+            "path": "guidelines/spacing.html",
+            "group": "Spacing",
+            "viewport": "700x140",
+            "subtitle": "4pt base — gaps & padding",
+            "name": "Spacing Scale"
+        },
+        {
+            "path": "guidelines/type-families.html",
+            "group": "Type",
+            "viewport": "700x220",
+            "subtitle": "Lato body · Inter UI labels · Manrope display",
+            "name": "Font Families"
+        },
+        {
+            "path": "guidelines/type-scale.html",
+            "group": "Type",
+            "viewport": "700x300",
+            "subtitle": "Lato — display to caption",
+            "name": "Type Scale"
+        }
+    ],
+    "templates": [],
+    "globalCssPaths": [
+        "tokens/fonts.css",
+        "tokens/colors.css",
+        "tokens/typography.css",
+        "tokens/spacing.css",
+        "styles.css"
+    ],
+    "tokens": [
+        {
+            "name": "--amber-100",
+            "value": "rgb(254,243,232)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--amber-400",
+            "value": "rgb(236,147,21)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--amber-500",
+            "value": "rgb(202,138,4)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--amber-600",
+            "value": "rgb(184,92,0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-100",
+            "value": "rgb(234,243,254)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-200",
+            "value": "rgb(219,234,254)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-300",
+            "value": "rgb(147,197,253)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-400",
+            "value": "rgb(74,144,226)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-500",
+            "value": "rgb(51,122,222)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-50",
+            "value": "rgb(244,249,254)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-600",
+            "value": "rgb(35,99,195)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--blue-700",
+            "value": "rgb(23,69,148)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-border-default",
+            "value": "var(--neutral-300)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-border-muted",
+            "value": "var(--neutral-200)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-border-strong",
+            "value": "var(--neutral-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-negative-primary-bg",
+            "value": "var(--red-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-negative-secondary-bg",
+            "value": "var(--red-100)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-negative-secondary-border",
+            "value": "var(--red-300)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-negative-secondary-text",
+            "value": "var(--red-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-negative-text",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-positive-primary-bg",
+            "value": "var(--green-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-positive-secondary-bg",
+            "value": "var(--green-50)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-positive-secondary-border",
+            "value": "var(--green-200)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-positive-secondary-text",
+            "value": "var(--green-800)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-positive-text",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-primary-default",
+            "value": "var(--blue-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-primary-hover",
+            "value": "var(--blue-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-primary-pressed",
+            "value": "var(--blue-700)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-primary-text",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-secondary-border",
+            "value": "var(--neutral-300)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-secondary-default",
+            "value": "var(--neutral-200)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-secondary-hover",
+            "value": "var(--neutral-200)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-secondary-pressed",
+            "value": "var(--neutral-300)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-secondary-text",
+            "value": "var(--neutral-950)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-success-primary-bg",
+            "value": "var(--green-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-success-secondary-bg",
+            "value": "var(--green-100)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-success-secondary-border",
+            "value": "var(--green-300)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-success-secondary-text",
+            "value": "var(--green-900)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-button-success-text",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-surface-default",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-surface-muted",
+            "value": "var(--neutral-100)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-surface-secondary",
+            "value": "var(--neutral-50)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-surface-subtle",
+            "value": "var(--neutral-200)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-danger",
+            "value": "var(--red-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-default",
+            "value": "var(--neutral-950)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-disabled",
+            "value": "var(--neutral-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-inverse",
+            "value": "var(--neutral-0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-link",
+            "value": "var(--blue-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-positive",
+            "value": "var(--green-800)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-secondary",
+            "value": "var(--neutral-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-success",
+            "value": "var(--green-900)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-text-warning",
+            "value": "var(--amber-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-100",
+            "value": "rgb(236,253,245)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-200",
+            "value": "rgb(134,239,172)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-300",
+            "value": "rgb(110,231,183)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-400",
+            "value": "rgb(34,197,94)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-500",
+            "value": "rgb(16,185,129)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-50",
+            "value": "rgb(240,253,244)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-600",
+            "value": "rgb(5,150,105)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-700",
+            "value": "rgb(31,157,85)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-800",
+            "value": "rgb(21,128,61)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-900",
+            "value": "rgb(4,120,87)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--green-950",
+            "value": "rgb(15,100,28)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-0",
+            "value": "rgb(255,255,255)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-1000",
+            "value": "rgb(0,0,0)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-100",
+            "value": "rgb(243,244,246)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-200",
+            "value": "rgb(229,231,235)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-300",
+            "value": "rgb(209,214,220)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-400",
+            "value": "rgb(173,178,185)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-500",
+            "value": "rgb(121,124,128)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-50",
+            "value": "rgb(249,250,251)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-600",
+            "value": "rgb(107,114,128)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-700",
+            "value": "rgb(82,82,82)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-800",
+            "value": "rgb(55,65,81)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-900",
+            "value": "rgb(17,24,39)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--neutral-950",
+            "value": "rgb(10,10,10)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--purple-100",
+            "value": "rgb(240,234,254)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--purple-400",
+            "value": "rgb(138,56,245)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--purple-600",
+            "value": "rgb(107,46,195)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-100",
+            "value": "rgb(254,242,242)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-200",
+            "value": "rgb(254,232,232)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-300",
+            "value": "rgb(252,165,165)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-400",
+            "value": "rgb(239,68,68)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-500",
+            "value": "rgb(220,38,38)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-50",
+            "value": "rgb(255,245,245)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-600",
+            "value": "rgb(209,45,45)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-700",
+            "value": "rgb(195,34,34)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-800",
+            "value": "rgb(185,29,19)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--red-900",
+            "value": "rgb(208,2,27)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-100",
+            "value": "rgb(189,201,202)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-200",
+            "value": "rgb(90,190,164)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-300",
+            "value": "rgb(0,204,174)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-400",
+            "value": "rgb(0,130,126)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-500",
+            "value": "rgb(0,96,103)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-50",
+            "value": "rgb(213,241,240)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--teal-600",
+            "value": "rgb(15,42,42)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-brand",
+            "value": "var(--teal-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-brand-deep",
+            "value": "var(--teal-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-brand-dark",
+            "value": "var(--teal-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-brand-tint",
+            "value": "var(--teal-50)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-brand-soft",
+            "value": "var(--teal-100)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-header-bg",
+            "value": "var(--teal-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-sidebar-bg",
+            "value": "rgb(242,244,245)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-app-bg",
+            "value": "rgb(245,247,252)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-heading",
+            "value": "var(--teal-400)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-pending-bg",
+            "value": "rgba(35,99,195,0.07)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-pending-fg",
+            "value": "var(--blue-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-denied-bg",
+            "value": "rgba(220,38,38,0.07)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-denied-fg",
+            "value": "var(--red-500)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-approved-bg",
+            "value": "rgba(5,150,105,0.10)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--color-pill-approved-fg",
+            "value": "var(--green-600)",
+            "kind": "color",
+            "definedIn": "tokens/colors.css",
+            "annotation": "color"
+        },
+        {
+            "name": "--font-body",
+            "value": "'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--font-ui",
+            "value": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--font-display",
+            "value": "'Manrope', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-regular",
+            "value": "400",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-medium",
+            "value": "500",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-semibold",
+            "value": "600",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-bold",
+            "value": "700",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-extrabold",
+            "value": "800",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--weight-black",
+            "value": "900",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-display-size",
+            "value": "45.5px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-display-lh",
+            "value": "65px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h1-size",
+            "value": "36px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h1-lh",
+            "value": "44px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h2-size",
+            "value": "24px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h2-lh",
+            "value": "32px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h3-size",
+            "value": "18px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-h3-lh",
+            "value": "28px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-body-lg-size",
+            "value": "16px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-body-lg-lh",
+            "value": "24px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-body-size",
+            "value": "14px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-body-lh",
+            "value": "20px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-label-size",
+            "value": "12px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-label-lh",
+            "value": "16px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-caption-size",
+            "value": "10px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--text-caption-lh",
+            "value": "15px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--tracking-label",
+            "value": "0.6px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--tracking-tight",
+            "value": "-0.5px",
+            "kind": "font",
+            "definedIn": "tokens/typography.css"
+        },
+        {
+            "name": "--space-1",
+            "value": "4px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-2",
+            "value": "8px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-3",
+            "value": "12px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-4",
+            "value": "16px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-5",
+            "value": "20px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-6",
+            "value": "24px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-8",
+            "value": "32px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-10",
+            "value": "40px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--space-12",
+            "value": "48px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-xs",
+            "value": "4px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-sm",
+            "value": "5px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-md",
+            "value": "8px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-lg",
+            "value": "12px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-xl",
+            "value": "16px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--radius-pill",
+            "value": "9999px",
+            "kind": "radius",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-xs",
+            "value": "0px 1px 2px -1px rgba(0,0,0,0.1), 0px 1px 3px 0px rgba(0,0,0,0.1)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-sm",
+            "value": "0px 1px 2px 0px rgba(0,0,0,0.1)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-md",
+            "value": "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-card",
+            "value": "inset 0 0 0 1px var(--color-border-muted), 0px 1px 2px 0px rgba(0,0,0,0.1)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-inset-input",
+            "value": "inset 0 0 0 1px var(--color-border-muted)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--shadow-progress-track",
+            "value": "inset 0px 2px 4px 0px rgba(0,0,0,0.05)",
+            "kind": "shadow",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--border-hairline",
+            "value": "1px solid var(--color-border-muted)",
+            "kind": "color",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--header-height",
+            "value": "76px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        },
+        {
+            "name": "--sidebar-width",
+            "value": "381px",
+            "kind": "spacing",
+            "definedIn": "tokens/spacing.css"
+        }
+    ],
+    "themes": [],
+    "fonts": [],
+    "brandFonts": [
+        {
+            "family": "Lato",
+            "status": "ok",
+            "tokens": [
+                "--font-body"
+            ],
+            "path": "tokens/typography.css"
+        },
+        {
+            "family": "Inter",
+            "status": "ok",
+            "tokens": [
+                "--font-ui"
+            ],
+            "path": "tokens/typography.css"
+        },
+        {
+            "family": "Manrope",
+            "status": "ok",
+            "tokens": [
+                "--font-display"
+            ],
+            "path": "tokens/typography.css"
+        }
+    ],
+    "source": "spa"
+}

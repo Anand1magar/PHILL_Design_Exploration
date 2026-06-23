@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Brand — Teal" subtitle="PHIL's teal scale; teal-400 is the brand anchor" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-ui); }
+  .row { display:flex; gap:10px; }
+  .sw { flex:1; }
+  .chip { height:64px; border-radius:10px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+  .name { font-size:11px; font-weight:700; color:var(--color-text-default); margin-top:8px; }
+  .val { font-size:10px; color:var(--color-text-secondary); font-family:var(--font-body); }
+</style></head>
+<body>
+<div class="row" id="r"></div>
+<script>
+  const steps = [
+    ['teal-50','--teal-50'],['teal-100','--teal-100'],['teal-200','--teal-200'],
+    ['teal-300','--teal-300'],['teal-400 ◆','--teal-400'],['teal-500','--teal-500'],['teal-600','--teal-600']
+  ];
+  const cs = getComputedStyle(document.documentElement);
+  document.getElementById('r').innerHTML = steps.map(([n,v]) => {
+    const c = cs.getPropertyValue(v).trim();
+    const dark = ['teal-400 ◆','teal-500','teal-600','teal-300'].includes(n);
+    return `<div class="sw"><div class="chip" style="background:${c}"></div><div class="name">${n}</div><div class="val">${c}</div></div>`;
+  }).join('');
+</script>
+</body></html>
