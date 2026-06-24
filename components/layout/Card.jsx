@@ -14,8 +14,9 @@ export function Card({
         display: 'flex', flexDirection: 'column', gap: 16,
         padding,
         borderRadius: 'var(--radius-xl)',
+        border: '1px solid var(--neutral-200)', // Figma 1:1700: 1.3px inset border
         backgroundColor: 'var(--color-surface-default)',
-        boxShadow: 'var(--shadow-card)',
+        // boxShadow: 'var(--shadow-card)',
         boxSizing: 'border-box',
         ...style,
       }}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import philLogoRaw from '../../assets/phil Logo.svg?raw';
+import paQueueIconRaw from '../../assets/Icons/PA_Queue_Icon.svg?raw';
 import { AppHeader }  from '../../components/navigation/AppHeader.jsx';
 import { Card }       from '../../components/layout/Card.jsx';
 import { KeyValue }   from '../../components/layout/KeyValue.jsx';
@@ -86,43 +87,188 @@ function HeroPanel({ status, onStart }) {
   );
 }
 
+// ── Figma asset URLs (Edit Insurance drawer) ─────────────────────
+const FIGMA_CARD_IMG  = 'https://www.figma.com/api/mcp/asset/1bf6c896-58e3-47bc-9b64-80c0fcd5acd5';
+const FIGMA_EDIT_ICON = 'https://www.figma.com/api/mcp/asset/f87cb419-a9c9-4a2f-ac8e-174c74040808';
+const FIGMA_ZOOM_IN   = 'https://www.figma.com/api/mcp/asset/3ed76917-1494-4d3b-a913-72e389681bf9';
+const FIGMA_ROTATE    = 'https://www.figma.com/api/mcp/asset/b9ef02a0-30cf-4f6a-a7a3-89ae8ab7a922';
+
+// Shared drawer field style — matches Figma exactly
+const FIELD_INPUT = {
+  width: '100%', border: 'none', outline: 'none', background: 'transparent',
+  fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: 14,
+  lineHeight: '20px', color: '#0a0a0a',
+};
+const FIELD_BOX = {
+  background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8,
+  padding: '13px 17px',
+  boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1)',
+};
+const FIELD_LABEL = {
+  fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14,
+  lineHeight: '20px', color: '#6b7280',
+};
+
+function DrawerField({ label, value, onChange }) {
+  return (
+    <div style={{ paddingBottom: 24 }}>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <span style={FIELD_LABEL}>{label}</span>
+        <div style={FIELD_BOX}>
+          <input value={value} onChange={onChange} style={FIELD_INPUT} />
+        </div>
+      </label>
+    </div>
+  );
+}
+
+// ── Edit Insurance Drawer ─────────────────────────────────────────
+function EditInsuranceDrawer({ open, onClose }) {
+  const [form, setForm] = useState({
+    carrier: 'United Healthcare CM',
+    memberId: 'U88294022',
+    groupId: 'NYFED-02',
+    bin: '610014',
+    pcn: 'MEDDPRIME',
+    type: 'Commercial',
+  });
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity 250ms ease', zIndex: 200,
+      }} />
+
+      {/* Drawer */}
+      <div style={{
+        position: 'fixed', top: 0, right: 0, bottom: 0, width: 397,
+        background: '#f2f4f5', zIndex: 201, overflowY: 'auto',
+        boxShadow: '-4px 0 24px rgba(0,0,0,0.12)',
+        transform: open ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 280ms cubic-bezier(0.4, 0, 0.2, 1)',
+        display: 'flex', flexDirection: 'column',
+        paddingTop: 24,
+      }}>
+
+        {/* Header */}
+        <div style={{ padding: '0 24px 32px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 8, flexShrink: 0,
+            background: '#2363c3', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+          }}>
+            <img src={FIGMA_EDIT_ICON} width={20} height={20} alt="" />
+          </div>
+          <div>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, lineHeight: '18px', color: '#191c1d' }}>
+              Edit Insurance
+            </div>
+            <div style={{ height: 15 }} />
+          </div>
+        </div>
+
+        {/* Nav content */}
+        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+          {/* Insurance card image + zoom toolbar */}
+          <div>
+            <div style={{ height: 226, width: '100%', overflow: 'hidden', position: 'relative', background: 'rgba(155,155,155,0.2)' }}>
+              <img src={FIGMA_CARD_IMG} alt="Insurance card"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            <div style={{ background: '#f4f4f4', padding: '9px 9px', display: 'flex', alignItems: 'center', gap: 13 }}>
+              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 11, lineHeight: '16px', color: '#525252' }}>100%</span>
+              <img src={FIGMA_ZOOM_IN} width={11} height={11} alt="zoom in" style={{ opacity: 0.7 }} />
+              <img src={FIGMA_ZOOM_IN} width={11} height={11} alt="zoom out" style={{ opacity: 0.7, transform: 'scaleY(-1)' }} />
+              <img src={FIGMA_ROTATE} width={14} height={14} alt="rotate" style={{ opacity: 0.7 }} />
+              <img src={FIGMA_ROTATE} width={14} height={14} alt="rotate back" style={{ opacity: 0.7, transform: 'rotate(180deg) scaleY(-1)' }} />
+              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 11, lineHeight: '16px', color: '#525252' }}>Reset</span>
+            </div>
+          </div>
+
+          {/* Form fields */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <DrawerField label="Primary Carrier" value={form.carrier} onChange={set('carrier')} />
+            <DrawerField label="Member ID"       value={form.memberId} onChange={set('memberId')} />
+            <DrawerField label="Group ID"        value={form.groupId}  onChange={set('groupId')} />
+            <DrawerField label="BIN"             value={form.bin}      onChange={set('bin')} />
+            <DrawerField label="PCN"             value={form.pcn}      onChange={set('pcn')} />
+
+            {/* Type — select */}
+            <div style={{ paddingBottom: 24 }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <span style={FIELD_LABEL}>Type</span>
+                <div style={{ ...FIELD_BOX, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <select value={form.type} onChange={set('type')} style={{ ...FIELD_INPUT, appearance: 'none', cursor: 'pointer' }}>
+                    {['Commercial', 'Medicare Part D', 'Medicaid', 'Tricare'].map((o) => (
+                      <option key={o}>{o}</option>
+                    ))}
+                  </select>
+                  <Icon name="chevron-down" size={16} color="#6b7280" style={{ flexShrink: 0, pointerEvents: 'none' }} />
+                </div>
+              </label>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8, paddingBottom: 32 }}>
+            <Button intent="primary" size="lg" fullWidth onClick={onClose}>Save</Button>
+            <Button intent="link" size="lg" onClick={onClose} style={{ alignSelf: 'center', color: '#525252' }}>Close</Button>
+          </div>
+
+        </div>
+      </div>
+    </>
+  );
+}
+
 // ── Detail cards row ──────────────────────────────────────────────
 function DetailRow() {
+  const [insuranceEditOpen, setInsuranceEditOpen] = useState(false);
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-      <Card title="Patient Profile" onCopy={() => {}}>
-        <KeyValue label="Legal Name" value="Patricia Tuladhar" />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-          <KeyValue label="Allergies" value="Cetirizine" valueColor="var(--color-text-danger)" />
-          <KeyValue label="DOB" value="02/18/1978" />
-        </div>
-        <KeyValue label="Address" value={"1294 Evergreen Terrace, Apt 4B\nNew York, NY 10012"} />
-        <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-      </Card>
+    <>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <Card title="Patient Profile" onCopy={() => {}}>
+          <KeyValue label="Legal Name" value="Patricia Tuladhar" />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <KeyValue label="Allergies" value="Cetirizine" valueColor="var(--color-text-danger)" />
+            <KeyValue label="DOB" value="02/18/1978" />
+          </div>
+          <KeyValue label="Address" value={"1294 Evergreen Terrace, Apt 4B\nNew York, NY 10012"} />
+          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
+        </Card>
 
-      <Card title="Insurance Details (1)" onCopy={() => {}}>
-        <Tag color="blue">Primary Insurance</Tag>
-        <KeyValue label="Primary Carrier" value="United Healthcare CM" />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-          <KeyValue label="Member ID" value="U88294022" />
-          <KeyValue label="Group" value="NYFED-02" />
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
-          <KeyValue label="BIN" value="610014" />
-          <KeyValue label="PCN" value="MEDDPRIME" />
-          <KeyValue label="Type" value="Commercial" />
-        </div>
-        <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-      </Card>
+        <Card title="Insurance Details (1)" onCopy={() => {}}>
+          <Tag color="blue">Primary Insurance</Tag>
+          <KeyValue label="Primary Carrier" value="United Healthcare CM" />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <KeyValue label="Member ID" value="U88294022" />
+            <KeyValue label="Group" value="NYFED-02" />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+            <KeyValue label="BIN" value="610014" />
+            <KeyValue label="PCN" value="MEDDPRIME" />
+            <KeyValue label="Type" value="Commercial" />
+          </div>
+          <Button intent="link" size="sm" onClick={() => setInsuranceEditOpen(true)} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
+        </Card>
 
-      <Card title="Doctor Information" onCopy={() => {}}>
-        <KeyValue label="Full Name" value="Dr. Marc James" />
-        <KeyValue label="Practice Name" value="Skin Expert MD" />
-        <KeyValue label="Contact" value="(212) 555-0192 · Fax (212) 555-0193" />
-        <Tag color="green" icon={<Icon name="check" size={10} />}>NPI Verified: 1942820011</Tag>
-        <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-      </Card>
-    </div>
+        <Card title="Doctor Information" onCopy={() => {}}>
+          <KeyValue label="Full Name" value="Dr. Marc James" />
+          <KeyValue label="Practice Name" value="Skin Expert MD" />
+          <KeyValue label="Contact" value="(212) 555-0192 · Fax (212) 555-0193" />
+          <Tag color="green" icon={<Icon name="check" size={10} />}>NPI Verified: 1942820011</Tag>
+          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
+        </Card>
+      </div>
+
+      <EditInsuranceDrawer open={insuranceEditOpen} onClose={() => setInsuranceEditOpen(false)} />
+    </>
   );
 }
 
@@ -218,22 +364,51 @@ function PAQueue({ feed, onSend, tab, setTab }) {
     <aside style={{ width: 'var(--sidebar-width)', flexShrink: 0, backgroundColor: 'var(--color-sidebar-bg)', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
       <div style={{ padding: '24px 20px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <span style={{ width: 40, height: 40, borderRadius: 8, background: 'var(--color-brand-deep)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-          <Icon name="list-checks" size={20} />
+          <span dangerouslySetInnerHTML={{ __html: paQueueIconRaw }} style={{ display: 'inline-flex', width: 20, height: 20 }} />
         </span>
         <span style={{ font: '700 18px var(--font-display)', color: 'rgb(25,28,29)' }}>PA Queue</span>
       </div>
-      <div style={{ padding: '0 16px', display: 'flex', gap: 4, marginBottom: 8 }}>
-        {[['comments', 'Comments', 'comment'], ['sop', 'PA Best Practice (SOP)', 'file']].map(([k, label, icon]) => (
-          <button key={k} onClick={() => setTab(k)} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8, border: 'none',
-            background: tab === k ? '#fff' : 'transparent', boxShadow: tab === k ? 'var(--shadow-card)' : 'none',
-            font: '500 14px var(--font-ui)', color: tab === k ? 'var(--color-brand)' : 'var(--neutral-700)', cursor: 'pointer' }}>
-            <Icon name={icon} size={15} />{label}
-          </button>
-        ))}
+      {/* Sliding tab switcher */}
+      <div style={{ padding: '0 16px', marginBottom: 8 }}>
+        <div style={{ position: 'relative', display: 'flex', background: 'rgba(0,0,0,0.05)', borderRadius: 10, padding: 3 }}>
+          {/* Sliding pill indicator */}
+          <div style={{
+            position: 'absolute', top: 3, bottom: 3,
+            left: tab === 'comments' ? 3 : 'calc(50%)',
+            width: 'calc(50% - 3px)',
+            background: '#fff',
+            borderRadius: 7,
+            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+            transition: 'left 220ms cubic-bezier(0.4, 0, 0.2, 1)',
+          }} />
+          {/* Tab buttons */}
+          {[['comments', 'Comments', 'comment'], ['sop', 'PA Best Practice (SOP)', 'file']].map(([k, label, icon]) => (
+            <button key={k} onClick={() => setTab(k)} style={{
+              flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              gap: 6, padding: '8px 10px', borderRadius: 7, border: 'none',
+              background: 'transparent',
+              font: '500 12px var(--font-ui)',
+              color: tab === k ? 'var(--color-brand)' : 'var(--neutral-600)',
+              cursor: 'pointer', position: 'relative', zIndex: 1,
+              transition: 'color 220ms ease',
+              whiteSpace: 'nowrap', overflow: 'hidden',
+            }}>
+              <Icon name={icon} size={13} />{label}
+            </button>
+          ))}
+        </div>
       </div>
-      {tab === 'sop' ? <SOPList /> : (
-        <div style={{ padding: '8px 16px 16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {/* Tab panels — both always mounted so transitions are smooth */}
+      <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+        {/* Comments */}
+        <div style={{
+          position: 'absolute', inset: 0, overflowY: 'auto',
+          padding: '8px 16px 16px', display: 'flex', flexDirection: 'column', gap: 12,
+          opacity: tab === 'comments' ? 1 : 0,
+          transform: tab === 'comments' ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 200ms ease, transform 200ms ease',
+          pointerEvents: tab === 'comments' ? 'auto' : 'none',
+        }}>
           <CommentBox onSend={onSend} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '4px 0' }}>
             <div style={{ flex: 1, height: 1, background: 'var(--color-border-muted)' }} />
@@ -242,7 +417,18 @@ function PAQueue({ feed, onSend, tab, setTab }) {
           </div>
           {feed.map((c, i) => <CommentItem key={i} meta={c.m}>{c.t}</CommentItem>)}
         </div>
-      )}
+
+        {/* SOP */}
+        <div style={{
+          position: 'absolute', inset: 0, overflowY: 'auto',
+          opacity: tab === 'sop' ? 1 : 0,
+          transform: tab === 'sop' ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 200ms ease, transform 200ms ease',
+          pointerEvents: tab === 'sop' ? 'auto' : 'none',
+        }}>
+          <SOPList />
+        </div>
+      </div>
     </aside>
   );
 }
