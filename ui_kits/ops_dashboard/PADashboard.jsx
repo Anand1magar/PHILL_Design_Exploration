@@ -13,8 +13,9 @@ import { Alert }      from '../../components/feedback/Alert.jsx';
 import { ProgressBar } from '../../components/feedback/ProgressBar.jsx';
 import { CommentBox, CommentItem } from '../../components/feedback/CommentBox.jsx';
 import { Select }     from '../../components/forms/Select.jsx';
-import { EditInsuranceDrawer, DetailRow } from './shared.jsx';
-import StartPAFlow from './StartPAFlow.jsx';
+import { EditInsuranceDrawer, DetailRow, MedRow } from './shared.jsx';
+import StartPAFlow       from './StartPAFlow.jsx';
+import CheckResultsFlow  from './CheckResultsFlow.jsx';
 
 const PALETTE = {
   appBg: 'var(--color-app-bg)',
@@ -90,54 +91,6 @@ function HeroPanel({ status, onStart }) {
   );
 }
 
-
-// ── Medication + MD notes ─────────────────────────────────────────
-function MedRow() {
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
-      <Card title="Medication Information" onCopy={() => {}}>
-        <KeyValue label="Drug Name" value="TYRVAYA (VARENICLINE SOLUTION) 0.03MG NASAL SPRAY" variant="title" />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-          <KeyValue label="RX Number" value="9941120-A" />
-          <KeyValue label="NDC" value="73516-0001-01" />
-          <KeyValue label="Drug Type" value="Generic" />
-          <KeyValue label="Quantity" value="4" />
-          <KeyValue label="Day of Supply" value="30" />
-          <KeyValue label="Refill Written" value="11" />
-          <KeyValue label="ICD10 Code" value="I10" />
-          <KeyValue label="DAW Code" value="1" />
-          <KeyValue label="Manufacturer" value="Oyster Point" />
-        </div>
-        <KeyValue label="SIG" value="Use one spray in each nostril twice daily, approximately 12 hours apart." />
-        <Button intent="secondary" size="md" icon={<Icon name="folder" size={16} />} style={{ marginTop: 4 }}>
-          View Manufacturer Business Rules
-        </Button>
-      </Card>
-
-      <Card title="MD Notes" style={{ backgroundColor: 'var(--blue-50)' }}>
-        <span style={{ font: '700 12px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: 'var(--color-text-secondary)' }}>Tried &amp; Failed Step Therapy</span>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {[['Methotrexate (Oral)', '3 months ago'], ['Clobetasol Propionate', '6 months ago']].map(([m, t]) => (
-            <div key={m} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fff', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-card)', padding: '12px 14px' }}>
-              <span style={{ font: '700 14px var(--font-body)', color: 'var(--color-text-default)' }}>{m}</span>
-              <span style={{ font: 'italic 400 13px var(--font-body)', color: 'var(--color-text-secondary)' }}>Failed: {t}</span>
-            </div>
-          ))}
-        </div>
-        <span style={{ font: '700 12px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginTop: 4 }}>MD Progress Notes (latest)</span>
-        <div style={{ background: '#fff', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-card)', padding: 14 }}>
-          <p style={{ margin: 0, font: '400 14px var(--font-body)', color: 'var(--neutral-900)', lineHeight: 1.5 }}>
-            "Patient exhibits progressive decline in mobility despite standard first-line therapies. Recommendation for OncoRelief IV is based on genetic markers showing high affinity for the specific protein pathways targeted by this biologic…"
-          </p>
-          <div style={{ marginTop: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ font: '400 12px var(--font-body)', color: 'var(--color-text-secondary)' }}>Last updated: 24h ago</span>
-            <Icon name="external-link" size={16} color="var(--color-text-secondary)" />
-          </div>
-        </div>
-      </Card>
-    </div>
-  );
-}
 
 // ── SOP list ─────────────────────────────────────────────────────
 const SOP_STEPS = [
@@ -256,7 +209,7 @@ function PAQueue({ feed, onSend, tab, setTab }) {
 const SCREENS = [
   { id: 1, label: 'PA Dashboard',       sub: 'Prior auth ops console',    accent: 'var(--color-brand)' },
   { id: 2, label: 'Start PA Flow',      sub: 'Live authorization tracker', accent: 'var(--blue-600)' },
-  { id: 3, label: 'Patient Overview',   sub: 'Patient profiles & history', accent: 'var(--purple-600)' },
+  { id: 3, label: 'Check Results Flow', sub: 'Check & submit PA results',   accent: 'var(--purple-600)' },
   { id: 4, label: 'Claim History',      sub: 'Rejected & resolved claims', accent: 'var(--amber-600)' },
   { id: 5, label: 'PA Archive',         sub: 'Closed prior authorizations', accent: 'var(--green-600)' },
 ];
@@ -434,6 +387,8 @@ export default function PADashboard() {
         </div>
       ) : activeScreen === 2 ? (
         <StartPAFlow />
+      ) : activeScreen === 3 ? (
+        <CheckResultsFlow />
       ) : (
         <PlaceholderScreen screen={currentScreen} />
       )}
