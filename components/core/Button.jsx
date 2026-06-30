@@ -38,6 +38,11 @@ const INTENTS = {
     pressed: 'var(--color-button-negative-primary-bg)', text: 'var(--color-button-negative-text)',
     border: null, disabledOpacity: 0.6,
   },
+  negativeSecondary: {
+    base: 'var(--color-surface-default)', hover: 'color-mix(in srgb, #b91d13 6%, white)',
+    pressed: 'color-mix(in srgb, #b91d13 12%, white)', text: '#b91d13',
+    border: '#b91d13', disabledOpacity: 0.5,
+  },
   link: {
     base: 'transparent', hover: 'transparent', pressed: 'transparent',
     text: 'var(--color-text-link)',

@@ -3,13 +3,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import editDocIconRaw   from '../../assets/Icons/edit-document.svg?raw';
 import rotateIconRaw    from '../../assets/Icons/rotate.svg?raw';
+import paQueueIconRaw   from '../../assets/Icons/PA_Queue_Icon.svg?raw';
 import insuranceCardImg from '../../assets/images/insurance-card.png';
-import { Card }     from '../../components/layout/Card.jsx';
-import { KeyValue } from '../../components/layout/KeyValue.jsx';
-import { Tag }      from '../../components/core/Tag.jsx';
-import { Button }   from '../../components/core/Button.jsx';
-import { Icon }     from '../../components/core/Icon.jsx';
-import { Select }   from '../../components/forms/Select.jsx';
+import { Card }        from '../../components/layout/Card.jsx';
+import { KeyValue }    from '../../components/layout/KeyValue.jsx';
+import { Tag }         from '../../components/core/Tag.jsx';
+import { Button }      from '../../components/core/Button.jsx';
+import { Icon }        from '../../components/core/Icon.jsx';
+import { Select }      from '../../components/forms/Select.jsx';
+import { CommentBox, CommentItem } from '../../components/feedback/CommentBox.jsx';
 
 // ── Field styles (Figma exact) ────────────────────────────────────
 export const FIELD_INPUT = {
@@ -213,9 +215,105 @@ export function EditInsuranceDrawer({ open, onClose }) {
   );
 }
 
+// ── Edit Patient Drawer ───────────────────────────────────────────
+export function EditPatientDrawer({ open, onClose }) {
+  const [form, setForm] = useState({
+    name: 'Patricia Tuladhar', dob: '02/18/1978',
+    allergies: 'Cetirizine', address: '1294 Evergreen Terrace, Apt 4B\nNew York, NY 10012',
+  });
+  const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+  return (
+    <>
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, background: 'color-mix(in srgb, var(--neutral-1000) 30%, transparent)',
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity 250ms ease', zIndex: 200,
+      }} />
+      <div style={{
+        position: 'fixed', top: 0, right: 0, bottom: 0, width: 397,
+        background: 'var(--color-sidebar-bg)', zIndex: 201, overflowY: 'auto',
+        boxShadow: `-4px 0 24px color-mix(in srgb, var(--neutral-1000) 12%, transparent)`,
+        transform: open ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 280ms cubic-bezier(0.4, 0, 0.2, 1)',
+        display: 'flex', flexDirection: 'column', paddingTop: 24,
+      }}>
+        <div style={{ padding: '0 24px 32px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 8, flexShrink: 0, background: 'var(--blue-600)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="user" size={20} color="#fff" />
+          </div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: 'var(--color-text-default)' }}>Edit Patient</div>
+        </div>
+        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <DrawerField label="Legal Name"    value={form.name}      onChange={set('name')} />
+            <DrawerField label="Date of Birth" value={form.dob}       onChange={set('dob')} />
+            <DrawerField label="Allergies"     value={form.allergies}  onChange={set('allergies')} />
+            <DrawerField label="Address"       value={form.address}   onChange={set('address')} />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8, paddingBottom: 32 }}>
+            <Button intent="primary" size="lg" fullWidth onClick={onClose}>Save</Button>
+            <Button intent="link" size="lg" onClick={onClose} style={{ alignSelf: 'center', color: 'var(--neutral-700)' }}>Close</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Edit Doctor Drawer ────────────────────────────────────────────
+export function EditDoctorDrawer({ open, onClose }) {
+  const [form, setForm] = useState({
+    name: 'Dr. Marc James', practice: 'Skin Expert MD',
+    phone: '(212) 555-0192', fax: '(212) 555-0193', npi: '1942820011',
+  });
+  const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+  return (
+    <>
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, background: 'color-mix(in srgb, var(--neutral-1000) 30%, transparent)',
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity 250ms ease', zIndex: 200,
+      }} />
+      <div style={{
+        position: 'fixed', top: 0, right: 0, bottom: 0, width: 397,
+        background: 'var(--color-sidebar-bg)', zIndex: 201, overflowY: 'auto',
+        boxShadow: `-4px 0 24px color-mix(in srgb, var(--neutral-1000) 12%, transparent)`,
+        transform: open ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 280ms cubic-bezier(0.4, 0, 0.2, 1)',
+        display: 'flex', flexDirection: 'column', paddingTop: 24,
+      }}>
+        <div style={{ padding: '0 24px 32px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 8, flexShrink: 0, background: 'var(--blue-600)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="building" size={20} color="#fff" />
+          </div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: 'var(--color-text-default)' }}>Edit Doctor</div>
+        </div>
+        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <DrawerField label="Full Name"     value={form.name}     onChange={set('name')} />
+            <DrawerField label="Practice Name" value={form.practice} onChange={set('practice')} />
+            <DrawerField label="Phone"         value={form.phone}    onChange={set('phone')} />
+            <DrawerField label="Fax"           value={form.fax}      onChange={set('fax')} />
+            <DrawerField label="NPI Number"    value={form.npi}      onChange={set('npi')} />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8, paddingBottom: 32 }}>
+            <Button intent="primary" size="lg" fullWidth onClick={onClose}>Save</Button>
+            <Button intent="link" size="lg" onClick={onClose} style={{ alignSelf: 'center', color: 'var(--neutral-700)' }}>Close</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 // ── Detail cards row (identical in both pages) ────────────────────
 export function DetailRow() {
+  const [patientEditOpen,   setPatientEditOpen]   = useState(false);
   const [insuranceEditOpen, setInsuranceEditOpen] = useState(false);
+  const [doctorEditOpen,    setDoctorEditOpen]    = useState(false);
+
   return (
     <>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
@@ -226,7 +324,7 @@ export function DetailRow() {
             <KeyValue label="DOB" value="02/18/1978" />
           </div>
           <KeyValue label="Address" value={"1294 Evergreen Terrace, Apt 4B\nNew York, NY 10012"} />
-          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
+          <Button intent="link" size="sm" onClick={() => setPatientEditOpen(true)} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
         </Card>
 
         <Card title="Insurance Details (1)" onCopy={() => {}}>
@@ -249,10 +347,180 @@ export function DetailRow() {
           <KeyValue label="Practice Name" value="Skin Expert MD" />
           <KeyValue label="Contact" value="(212) 555-0192 · Fax (212) 555-0193" />
           <Tag color="green" icon={<Icon name="check" size={10} />}>NPI Verified: 1942820011</Tag>
-          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
+          <Button intent="link" size="sm" onClick={() => setDoctorEditOpen(true)} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
         </Card>
       </div>
+
+      <EditPatientDrawer   open={patientEditOpen}   onClose={() => setPatientEditOpen(false)} />
       <EditInsuranceDrawer open={insuranceEditOpen} onClose={() => setInsuranceEditOpen(false)} />
+      <EditDoctorDrawer    open={doctorEditOpen}    onClose={() => setDoctorEditOpen(false)} />
     </>
+  );
+}
+
+// ── PA Queue — shared across Start PA and Check Results flows ─────
+
+const SOP_STEPS = [
+  { n: 1,  text: 'Verify patient eligibility and active coverage before initiating PA.' },
+  { n: 2,  text: 'Confirm the drug requires PA by checking the carrier formulary.' },
+  { n: 3,  text: 'Collect ICD-10 diagnosis codes from the prescriber\'s notes.' },
+  { n: 4,  text: 'Document any tried-and-failed step therapy medications with dates.' },
+  { n: 5,  text: 'Submit PA via CoverMyMeds (CMM) or carrier portal — record the CMM key.' },
+  { n: 6,  text: 'Set order to sleep for 30 mins post-submission; RPA will monitor callbacks.' },
+  { n: 7,  text: 'If no callback within 24 h, contact carrier to confirm receipt.' },
+  { n: 8,  text: 'On approval: update PA status, record CMM key, expiry date, and member ID.' },
+  { n: 9,  text: 'On denial: document reason code, advise prescriber, initiate appeal if applicable.' },
+  { n: 10, text: 'Log all manual actions in the PA Queue Comments with actor and timestamp.' },
+];
+
+function SOPList() {
+  return (
+    <div style={{ padding: '8px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <span style={{ font: '700 11px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+        Standard Operating Procedure
+      </span>
+      {SOP_STEPS.map((s) => (
+        <div key={s.n} style={{ display: 'flex', gap: 12, padding: '14px 16px', borderRadius: 6, background: 'var(--color-surface-default)', boxShadow: `0 1px 1px color-mix(in srgb, var(--neutral-1000) 3%, transparent)`, wordBreak: 'break-word' }}>
+          <span style={{ font: '800 12px var(--font-body)', color: 'var(--color-brand)', minWidth: 18, paddingTop: 1 }}>{s.n}.</span>
+          <span style={{ font: '400 13px/1.5 var(--font-body)', color: 'var(--color-text-default)' }}>{s.text}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+const PA_QUEUE_FEED = [
+  { t: 'Provider Notification Success callback received from CMM. cmmKey: BY9YXEB7', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Sleep Status Removed.', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'PA created callback received from CMM. cmmKey: BY9YXEB7', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Order woke up from sleep status', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Start PA completed by RPA. Order put to sleep for 30 mins', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Insurance info mismatch: Insurance was updated in BestRx by RPA. Insurance - Provider Name: MEDICARE PART D EXPRESS SCRIPTS, Insurance Id: 47016793, BIN Number: 610014, PCN Number: meddprime, Grp Number: 2FGA', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Create PA automation started via RPA. Order put to sleep for 10 mins', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Failed to create PA request via BestRx API. Error: Patient and prescription does not match. err: BestRx payment method is Cash. PA requests are not allowed for cash prescriptions.', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Insurance exception reported by PP. Reason code: 569 - Provide Notice: Medicare Prescription Drug Coverage and Your Rights; MR - Product Not On Formulary', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'PRESCRIPTION_TRANSFER fax was delivered successfully', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by PhilSystem' },
+  { t: 'Prescription transferred from Phil to Sterling Specialty Pharmacy.', m: 'Fri Aug 23, 2024 9:05:49 AM EDT · by Emmanuel Abujan (Psup Agent)' },
+];
+
+export function PAQueue() {
+  const [tab, setTab]   = useState('comments');
+  const [feed, setFeed] = useState(PA_QUEUE_FEED);
+  const send = (text) => setFeed(f => [{ t: text, m: 'Today · You (PA Agent)' }, ...f]);
+
+  return (
+    <aside style={{ width: 'var(--sidebar-width)', flexShrink: 0, backgroundColor: 'var(--color-sidebar-bg)', borderLeft: '1px solid var(--color-border-muted)', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div style={{ padding: '24px 20px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ width: 40, height: 40, borderRadius: 8, background: 'var(--color-brand-deep)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span dangerouslySetInnerHTML={{ __html: paQueueIconRaw }} style={{ display: 'inline-flex', width: 20, height: 20 }} />
+        </span>
+        <span style={{ font: '700 18px var(--font-display)', color: 'var(--color-text-default)' }}>PA Queue</span>
+      </div>
+      <div style={{ padding: '0 16px', marginBottom: 8 }}>
+        <div style={{ position: 'relative', display: 'flex', background: 'color-mix(in srgb, var(--neutral-1000) 5%, transparent)', borderRadius: 10, padding: 3 }}>
+          <div style={{
+            position: 'absolute', top: 3, bottom: 3,
+            left: tab === 'comments' ? 3 : 'calc(50%)',
+            width: 'calc(50% - 3px)',
+            background: 'var(--color-surface-default)', borderRadius: 7, boxShadow: 'var(--shadow-sm)',
+            transition: 'left 220ms cubic-bezier(0.4, 0, 0.2, 1)',
+          }} />
+          {[['comments', 'Comments', 'comment'], ['sop', 'PA Best Practice (SOP)', 'file']].map(([k, label, icon]) => (
+            <button key={k} onClick={() => setTab(k)} style={{
+              flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              gap: 6, padding: '8px 10px', borderRadius: 7, border: 'none', background: 'transparent',
+              font: '500 12px var(--font-ui)', color: tab === k ? 'var(--color-brand)' : 'var(--neutral-600)',
+              cursor: 'pointer', position: 'relative', zIndex: 1,
+              transition: 'color 220ms ease', whiteSpace: 'nowrap', overflow: 'hidden',
+            }}>
+              <Icon name={icon} size={13} />{label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', inset: 0, overflowY: 'auto',
+          padding: '8px 16px 16px', display: 'flex', flexDirection: 'column', gap: 12,
+          opacity: tab === 'comments' ? 1 : 0,
+          transform: tab === 'comments' ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 200ms ease, transform 200ms ease',
+          pointerEvents: tab === 'comments' ? 'auto' : 'none',
+        }}>
+          <CommentBox onSend={send} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '4px 0' }}>
+            <div style={{ flex: 1, height: 1, background: 'var(--color-border-muted)' }} />
+            <span style={{ font: '400 12px var(--font-body)', color: 'var(--color-text-secondary)' }}>First fill</span>
+            <div style={{ flex: 1, height: 1, background: 'var(--color-border-muted)' }} />
+          </div>
+          {feed.map((c, i) => <CommentItem key={i} meta={c.m}>{c.t}</CommentItem>)}
+        </div>
+        <div style={{
+          position: 'absolute', inset: 0, overflowY: 'auto',
+          opacity: tab === 'sop' ? 1 : 0,
+          transform: tab === 'sop' ? 'translateY(0)' : 'translateY(6px)',
+          transition: 'opacity 200ms ease, transform 200ms ease',
+          pointerEvents: tab === 'sop' ? 'auto' : 'none',
+        }}>
+          <SOPList />
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+// ── Medication row — shared source of truth across all pages ──────
+export function MedRow() {
+  const SUB = 'var(--color-text-secondary)';
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
+      <Card
+        title="Medication Information"
+        action={<Button intent="link" size="md">Edit Details</Button>}
+        onCopy={() => {}}
+      >
+        <KeyValue label="Drug Name" value="TYRVAYA (VARENICLINE SOLUTION) 0.03MG NASAL SPRAY" variant="title" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+          <KeyValue label="RX Number"       value="9941120-A" />
+          <KeyValue label="NDC"             value="73516-0001-01" />
+          <KeyValue label="Drug Type"       value="Generic" />
+          <KeyValue label="Quantity"        value="4" />
+          <KeyValue label="Day of Supply"   value="30" />
+          <KeyValue label="Refill Written"  value="11" />
+          <KeyValue label="Fills Completed" value="0-6" />
+          <KeyValue label="Package Size"    value="4" />
+          <KeyValue label="Controlled"      value="—" />
+          <KeyValue label="ICD10 Code"      value="I10" />
+          <KeyValue label="DAW Code"        value="1" />
+          <KeyValue label="Manufacturer"    value="Oyster Point" />
+        </div>
+        <KeyValue label="SIG" value="USE ONE SPRAY IN EACH NOSTRIL TWICE DAILY APPROXIMATELY 12 HOURS APART" />
+        <Button intent="secondary" size="md" icon={<Icon name="folder" size={16} />} style={{ marginTop: 4 }}>
+          View Manufacturer Business Rules
+        </Button>
+      </Card>
+
+      <Card title="MD Notes" style={{ backgroundColor: 'var(--blue-50)' }}>
+        <span style={{ font: '700 12px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: SUB }}>Tried &amp; Failed Step Therapy</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[['Methotrexate (Oral)', '3 months ago'], ['Clobetasol Propionate', '6 months ago']].map(([m, t]) => (
+            <div key={m} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--color-surface-default)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-card)', padding: '12px 14px' }}>
+              <span style={{ font: '700 14px var(--font-body)', color: 'var(--color-text-default)' }}>{m}</span>
+              <span style={{ font: 'italic 400 13px var(--font-body)', color: SUB }}>Failed: {t}</span>
+            </div>
+          ))}
+        </div>
+        <span style={{ font: '700 12px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: SUB, marginTop: 4 }}>MD Progress Notes (latest)</span>
+        <div style={{ background: 'var(--color-surface-default)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-card)', padding: 14 }}>
+          <p style={{ margin: 0, font: '400 14px var(--font-body)', color: 'var(--neutral-900)', lineHeight: 1.5 }}>
+            "Patient exhibits progressive decline in mobility despite standard first-line therapies. Recommendation for OncoRelief IV is based on genetic markers showing high affinity for the specific protein pathways targeted by this biologic…"
+          </p>
+          <div style={{ marginTop: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ font: '400 12px var(--font-body)', color: SUB }}>Last updated: 24h ago</span>
+            <Icon name="external-link" size={16} color={SUB} />
+          </div>
+        </div>
+      </Card>
+    </div>
   );
 }

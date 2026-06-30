@@ -5,9 +5,10 @@ import React from 'react';
  * Soft-blue panel, a glassy pill track with an inset progress fill, and remaining / business-day labels.
  */
 const TONES = {
-  blue:  { panel: 'rgba(35,99,195,0.10)', fill: 'var(--blue-600)',  accent: 'var(--blue-600)',  ring: 'rgba(35,99,195,0.1)' },
-  green: { panel: 'rgba(5,150,105,0.10)', fill: 'var(--green-600)', accent: 'var(--green-800)', ring: 'rgba(5,150,105,0.12)' },
-  amber: { panel: 'rgba(184,92,0,0.08)',  fill: 'var(--amber-600)', accent: 'var(--amber-600)', ring: 'rgba(184,92,0,0.12)' },
+  blue:  { panel: 'rgba(35,99,195,0.10)',  fill: 'var(--blue-600)',  accent: 'var(--blue-600)',  ring: 'rgba(35,99,195,0.1)'  },
+  green: { panel: 'rgba(5,150,105,0.10)',  fill: 'var(--green-600)', accent: 'var(--green-800)', ring: 'rgba(5,150,105,0.12)' },
+  amber: { panel: 'rgba(184,92,0,0.08)',   fill: 'var(--amber-600)', accent: 'var(--amber-600)', ring: 'rgba(184,92,0,0.12)'  },
+  red:   { panel: 'rgba(185,29,19,0.10)',  fill: '#b91d13',          accent: '#b91d13',          ring: 'rgba(185,29,19,0.10)' },
 };
 
 export function ProgressBar({
