@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import philLogoRaw from '../../assets/phil Logo.svg?raw';
+import React, { useState, useRef, useEffect } from 'react';
+import philLogoRaw  from '../../assets/phil Logo.svg?raw';
 import paQueueIconRaw from '../../assets/Icons/PA_Queue_Icon.svg?raw';
+import zoomInIconRaw from '../../assets/Icons/zoom-in.svg?raw';
 import { AppHeader }  from '../../components/navigation/AppHeader.jsx';
 import { Card }       from '../../components/layout/Card.jsx';
 import { KeyValue }   from '../../components/layout/KeyValue.jsx';
@@ -12,6 +13,8 @@ import { Alert }      from '../../components/feedback/Alert.jsx';
 import { ProgressBar } from '../../components/feedback/ProgressBar.jsx';
 import { CommentBox, CommentItem } from '../../components/feedback/CommentBox.jsx';
 import { Select }     from '../../components/forms/Select.jsx';
+import { EditInsuranceDrawer, DetailRow } from './shared.jsx';
+import StartPAFlow from './StartPAFlow.jsx';
 
 const PALETTE = {
   appBg: 'var(--color-app-bg)',
@@ -87,190 +90,6 @@ function HeroPanel({ status, onStart }) {
   );
 }
 
-// ── Figma asset URLs (Edit Insurance drawer) ─────────────────────
-const FIGMA_CARD_IMG  = 'https://www.figma.com/api/mcp/asset/1bf6c896-58e3-47bc-9b64-80c0fcd5acd5';
-const FIGMA_EDIT_ICON = 'https://www.figma.com/api/mcp/asset/f87cb419-a9c9-4a2f-ac8e-174c74040808';
-const FIGMA_ZOOM_IN   = 'https://www.figma.com/api/mcp/asset/3ed76917-1494-4d3b-a913-72e389681bf9';
-const FIGMA_ROTATE    = 'https://www.figma.com/api/mcp/asset/b9ef02a0-30cf-4f6a-a7a3-89ae8ab7a922';
-
-// Shared drawer field style — matches Figma exactly
-const FIELD_INPUT = {
-  width: '100%', border: 'none', outline: 'none', background: 'transparent',
-  fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: 14,
-  lineHeight: '20px', color: '#0a0a0a',
-};
-const FIELD_BOX = {
-  background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8,
-  padding: '13px 17px',
-  boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1)',
-};
-const FIELD_LABEL = {
-  fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14,
-  lineHeight: '20px', color: '#6b7280',
-};
-
-function DrawerField({ label, value, onChange }) {
-  return (
-    <div style={{ paddingBottom: 24 }}>
-      <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <span style={FIELD_LABEL}>{label}</span>
-        <div style={FIELD_BOX}>
-          <input value={value} onChange={onChange} style={FIELD_INPUT} />
-        </div>
-      </label>
-    </div>
-  );
-}
-
-// ── Edit Insurance Drawer ─────────────────────────────────────────
-function EditInsuranceDrawer({ open, onClose }) {
-  const [form, setForm] = useState({
-    carrier: 'United Healthcare CM',
-    memberId: 'U88294022',
-    groupId: 'NYFED-02',
-    bin: '610014',
-    pcn: 'MEDDPRIME',
-    type: 'Commercial',
-  });
-  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  return (
-    <>
-      {/* Backdrop */}
-      <div onClick={onClose} style={{
-        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)',
-        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
-        transition: 'opacity 250ms ease', zIndex: 200,
-      }} />
-
-      {/* Drawer */}
-      <div style={{
-        position: 'fixed', top: 0, right: 0, bottom: 0, width: 397,
-        background: '#f2f4f5', zIndex: 201, overflowY: 'auto',
-        boxShadow: '-4px 0 24px rgba(0,0,0,0.12)',
-        transform: open ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 280ms cubic-bezier(0.4, 0, 0.2, 1)',
-        display: 'flex', flexDirection: 'column',
-        paddingTop: 24,
-      }}>
-
-        {/* Header */}
-        <div style={{ padding: '0 24px 32px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: 8, flexShrink: 0,
-            background: '#2363c3', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-          }}>
-            <img src={FIGMA_EDIT_ICON} width={20} height={20} alt="" />
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, lineHeight: '18px', color: '#191c1d' }}>
-              Edit Insurance
-            </div>
-            <div style={{ height: 15 }} />
-          </div>
-        </div>
-
-        {/* Nav content */}
-        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column', gap: 20 }}>
-
-          {/* Insurance card image + zoom toolbar */}
-          <div>
-            <div style={{ height: 226, width: '100%', overflow: 'hidden', position: 'relative', background: 'rgba(155,155,155,0.2)' }}>
-              <img src={FIGMA_CARD_IMG} alt="Insurance card"
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div style={{ background: '#f4f4f4', padding: '9px 9px', display: 'flex', alignItems: 'center', gap: 13 }}>
-              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 11, lineHeight: '16px', color: '#525252' }}>100%</span>
-              <img src={FIGMA_ZOOM_IN} width={11} height={11} alt="zoom in" style={{ opacity: 0.7 }} />
-              <img src={FIGMA_ZOOM_IN} width={11} height={11} alt="zoom out" style={{ opacity: 0.7, transform: 'scaleY(-1)' }} />
-              <img src={FIGMA_ROTATE} width={14} height={14} alt="rotate" style={{ opacity: 0.7 }} />
-              <img src={FIGMA_ROTATE} width={14} height={14} alt="rotate back" style={{ opacity: 0.7, transform: 'rotate(180deg) scaleY(-1)' }} />
-              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 11, lineHeight: '16px', color: '#525252' }}>Reset</span>
-            </div>
-          </div>
-
-          {/* Form fields */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <DrawerField label="Primary Carrier" value={form.carrier} onChange={set('carrier')} />
-            <DrawerField label="Member ID"       value={form.memberId} onChange={set('memberId')} />
-            <DrawerField label="Group ID"        value={form.groupId}  onChange={set('groupId')} />
-            <DrawerField label="BIN"             value={form.bin}      onChange={set('bin')} />
-            <DrawerField label="PCN"             value={form.pcn}      onChange={set('pcn')} />
-
-            {/* Type — select */}
-            <div style={{ paddingBottom: 24 }}>
-              <label style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <span style={FIELD_LABEL}>Type</span>
-                <div style={{ ...FIELD_BOX, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <select value={form.type} onChange={set('type')} style={{ ...FIELD_INPUT, appearance: 'none', cursor: 'pointer' }}>
-                    {['Commercial', 'Medicare Part D', 'Medicaid', 'Tricare'].map((o) => (
-                      <option key={o}>{o}</option>
-                    ))}
-                  </select>
-                  <Icon name="chevron-down" size={16} color="#6b7280" style={{ flexShrink: 0, pointerEvents: 'none' }} />
-                </div>
-              </label>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8, paddingBottom: 32 }}>
-            <Button intent="primary" size="lg" fullWidth onClick={onClose}>Save</Button>
-            <Button intent="link" size="lg" onClick={onClose} style={{ alignSelf: 'center', color: '#525252' }}>Close</Button>
-          </div>
-
-        </div>
-      </div>
-    </>
-  );
-}
-
-// ── Detail cards row ──────────────────────────────────────────────
-function DetailRow() {
-  const [insuranceEditOpen, setInsuranceEditOpen] = useState(false);
-
-  return (
-    <>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
-        <Card title="Patient Profile" onCopy={() => {}}>
-          <KeyValue label="Legal Name" value="Patricia Tuladhar" />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <KeyValue label="Allergies" value="Cetirizine" valueColor="var(--color-text-danger)" />
-            <KeyValue label="DOB" value="02/18/1978" />
-          </div>
-          <KeyValue label="Address" value={"1294 Evergreen Terrace, Apt 4B\nNew York, NY 10012"} />
-          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-        </Card>
-
-        <Card title="Insurance Details (1)" onCopy={() => {}}>
-          <Tag color="blue">Primary Insurance</Tag>
-          <KeyValue label="Primary Carrier" value="United Healthcare CM" />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-            <KeyValue label="Member ID" value="U88294022" />
-            <KeyValue label="Group" value="NYFED-02" />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
-            <KeyValue label="BIN" value="610014" />
-            <KeyValue label="PCN" value="MEDDPRIME" />
-            <KeyValue label="Type" value="Commercial" />
-          </div>
-          <Button intent="link" size="sm" onClick={() => setInsuranceEditOpen(true)} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-        </Card>
-
-        <Card title="Doctor Information" onCopy={() => {}}>
-          <KeyValue label="Full Name" value="Dr. Marc James" />
-          <KeyValue label="Practice Name" value="Skin Expert MD" />
-          <KeyValue label="Contact" value="(212) 555-0192 · Fax (212) 555-0193" />
-          <Tag color="green" icon={<Icon name="check" size={10} />}>NPI Verified: 1942820011</Tag>
-          <Button intent="link" size="sm" onClick={() => {}} style={{ alignSelf: 'flex-start' }}>EDIT</Button>
-        </Card>
-      </div>
-
-      <EditInsuranceDrawer open={insuranceEditOpen} onClose={() => setInsuranceEditOpen(false)} />
-    </>
-  );
-}
 
 // ── Medication + MD notes ─────────────────────────────────────────
 function MedRow() {
@@ -341,7 +160,7 @@ function SOPList() {
         Standard Operating Procedure
       </span>
       {SOP_STEPS.map((s) => (
-        <div key={s.n} style={{ display: 'flex', gap: 12, padding: '14px 16px', borderRadius: 6, background: '#fff', boxShadow: '0 1px 1px rgba(0,0,0,0.03)', wordBreak: 'break-word' }}>
+        <div key={s.n} style={{ display: 'flex', gap: 12, padding: '14px 16px', borderRadius: 6, background: 'var(--color-surface-default)', boxShadow: `0 1px 1px color-mix(in srgb, var(--neutral-1000) 3%, transparent)`, wordBreak: 'break-word' }}>
           <span style={{ font: '800 12px var(--font-body)', color: 'var(--color-brand)', minWidth: 18, paddingTop: 1 }}>{s.n}.</span>
           <span style={{ font: '400 13px/1.5 var(--font-body)', color: 'var(--color-text-default)' }}>{s.text}</span>
         </div>
@@ -370,15 +189,15 @@ function PAQueue({ feed, onSend, tab, setTab }) {
       </div>
       {/* Sliding tab switcher */}
       <div style={{ padding: '0 16px', marginBottom: 8 }}>
-        <div style={{ position: 'relative', display: 'flex', background: 'rgba(0,0,0,0.05)', borderRadius: 10, padding: 3 }}>
+        <div style={{ position: 'relative', display: 'flex', background: 'color-mix(in srgb, var(--neutral-1000) 5%, transparent)', borderRadius: 10, padding: 3 }}>
           {/* Sliding pill indicator */}
           <div style={{
             position: 'absolute', top: 3, bottom: 3,
             left: tab === 'comments' ? 3 : 'calc(50%)',
             width: 'calc(50% - 3px)',
-            background: '#fff',
+            background: 'var(--color-surface-default)',
             borderRadius: 7,
-            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+            boxShadow: 'var(--shadow-sm)',
             transition: 'left 220ms cubic-bezier(0.4, 0, 0.2, 1)',
           }} />
           {/* Tab buttons */}
@@ -433,10 +252,153 @@ function PAQueue({ feed, onSend, tab, setTab }) {
   );
 }
 
+// ── Screens registry ─────────────────────────────────────────────
+const SCREENS = [
+  { id: 1, label: 'PA Dashboard',       sub: 'Prior auth ops console',    accent: 'var(--color-brand)' },
+  { id: 2, label: 'Start PA Flow',      sub: 'Live authorization tracker', accent: 'var(--blue-600)' },
+  { id: 3, label: 'Patient Overview',   sub: 'Patient profiles & history', accent: 'var(--purple-600)' },
+  { id: 4, label: 'Claim History',      sub: 'Rejected & resolved claims', accent: 'var(--amber-600)' },
+  { id: 5, label: 'PA Archive',         sub: 'Closed prior authorizations', accent: 'var(--green-600)' },
+];
+
+// ── Side navigation ───────────────────────────────────────────────
+function SideNav({ open, onClose, activeScreen, onSelect }) {
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) onClose();
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open, onClose]);
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, zIndex: 150,
+        background: 'color-mix(in srgb, var(--neutral-1000) 30%, transparent)',
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity 220ms ease',
+      }} />
+
+      {/* Drawer */}
+      <nav ref={navRef} style={{
+        position: 'fixed', top: 0, left: 0, bottom: 0, width: 256, zIndex: 151,
+        background: 'var(--color-surface-default)',
+        boxShadow: `4px 0 24px color-mix(in srgb, var(--neutral-1000) 12%, transparent)`,
+        transform: open ? 'translateX(0)' : 'translateX(-100%)',
+        transition: 'transform 260ms cubic-bezier(0.4, 0, 0.2, 1)',
+        display: 'flex', flexDirection: 'column',
+      }}>
+        {/* Header */}
+        <div style={{
+          height: 'var(--header-height)', display: 'flex', alignItems: 'center',
+          padding: '0 20px', gap: 12,
+          borderBottom: '1px solid var(--color-border-muted)',
+          background: 'var(--color-header-bg)',
+        }}>
+          <span dangerouslySetInnerHTML={{ __html: philLogoRaw }} style={{ display: 'inline-flex', height: 26 }} />
+        </div>
+
+        {/* Section label */}
+        <div style={{ padding: '20px 20px 8px' }}>
+          <span style={{ font: '700 10px var(--font-body)', letterSpacing: '.8px', textTransform: 'uppercase', color: 'var(--color-text-secondary)' }}>
+            Design Screens
+          </span>
+        </div>
+
+        {/* Screen list */}
+        <div style={{ flex: 1, overflowY: 'auto', padding: '0 10px 20px' }}>
+          {SCREENS.map((s) => {
+            const active = s.id === activeScreen;
+            return (
+              <button key={s.id} onClick={() => { onSelect(s.id); onClose(); }} style={{
+                width: '100%', display: 'flex', alignItems: 'center', gap: 12,
+                padding: '10px 10px', borderRadius: 8, border: 'none', cursor: 'pointer',
+                background: active ? `color-mix(in srgb, ${s.accent} 8%, transparent)` : 'transparent',
+                textAlign: 'left', transition: 'background 140ms ease', marginBottom: 2,
+              }}
+                onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'var(--color-surface-muted)'; }}
+                onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent'; }}
+              >
+                {/* Color dot */}
+                <span style={{
+                  width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
+                  background: s.accent,
+                  opacity: active ? 1 : 0.4,
+                }} />
+                <div>
+                  <div style={{
+                    fontFamily: 'var(--font-body)', fontWeight: active ? 700 : 500,
+                    fontSize: 13, lineHeight: '18px',
+                    color: active ? s.accent : 'var(--color-text-default)',
+                  }}>{s.label}</div>
+                  <div style={{
+                    fontFamily: 'var(--font-body)', fontWeight: 400,
+                    fontSize: 11, lineHeight: '15px', color: 'var(--color-text-secondary)',
+                    marginTop: 1,
+                  }}>{s.sub}</div>
+                </div>
+                {active && (
+                  <span style={{ marginLeft: 'auto', width: 3, height: 20, borderRadius: 2, background: s.accent, flexShrink: 0 }} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Footer */}
+        <div style={{ padding: '12px 20px 20px', borderTop: '1px solid var(--color-border-muted)' }}>
+          <span style={{ font: '400 11px var(--font-body)', color: 'var(--color-text-secondary)' }}>
+            PHIL Design System · v1.0
+          </span>
+        </div>
+      </nav>
+    </>
+  );
+}
+
+// ── Placeholder screens (2–5) ─────────────────────────────────────
+function PlaceholderScreen({ screen }) {
+  return (
+    <div style={{
+      flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      flexDirection: 'column', gap: 16,
+      background: `color-mix(in srgb, ${screen.accent} 5%, var(--color-app-bg))`,
+    }}>
+      <div style={{
+        width: 56, height: 56, borderRadius: 16,
+        background: `color-mix(in srgb, ${screen.accent} 15%, transparent)`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <span style={{ width: 24, height: 24, borderRadius: '50%', background: screen.accent, opacity: 0.8 }} />
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <h2 style={{ margin: 0, font: '700 28px var(--font-display)', color: screen.accent }}>
+          {screen.label}
+        </h2>
+        <p style={{ margin: '8px 0 0', font: '400 15px var(--font-body)', color: 'var(--color-text-secondary)' }}>
+          {screen.sub}
+        </p>
+        <p style={{ margin: '20px 0 0', font: '400 13px var(--font-body)', color: 'var(--color-text-secondary)', opacity: 0.7 }}>
+          Screen {screen.id} — coming soon
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function PADashboard() {
   const [status, setStatus] = useState('none');
   const [feed, setFeed] = useState(SEED);
   const [tab, setTab] = useState('comments');
+  const [sideNavOpen, setSideNavOpen] = useState(false);
+  const [activeScreen, setActiveScreen] = useState(1);
+
+  const currentScreen = SCREENS.find(s => s.id === activeScreen);
 
   const start = (provider) => {
     setStatus('pending');
@@ -449,18 +411,32 @@ export default function PADashboard() {
 
   return (
     <div style={{ minHeight: '100vh', background: PALETTE.appBg, display: 'flex', flexDirection: 'column' }}>
+      <SideNav
+        open={sideNavOpen}
+        onClose={() => setSideNavOpen(false)}
+        activeScreen={activeScreen}
+        onSelect={setActiveScreen}
+      />
       <AppHeader
         logo={<span dangerouslySetInnerHTML={{ __html: philLogoRaw }} style={{ display: 'inline-flex', height: 32 }} />}
+        onMenuClick={() => setSideNavOpen(v => !v)}
         style={{ position: 'sticky', top: 0, zIndex: 100 }}
       />
-      <div style={{ flex: 1, display: 'flex', minHeight: 0, width: '100%', maxWidth: 1392, margin: '0 auto' }}>
-        <main style={{ flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
-          <HeroPanel status={status} onStart={start} />
-          <DetailRow />
-          <MedRow />
-        </main>
-        <PAQueue feed={feed} onSend={send} tab={tab} setTab={setTab} />
-      </div>
+
+      {activeScreen === 1 ? (
+        <div style={{ flex: 1, display: 'flex', minHeight: 0, width: '100%', maxWidth: 1392, margin: '0 auto' }}>
+          <main style={{ flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
+            <HeroPanel status={status} onStart={start} />
+            <DetailRow />
+            <MedRow />
+          </main>
+          <PAQueue feed={feed} onSend={send} tab={tab} setTab={setTab} />
+        </div>
+      ) : activeScreen === 2 ? (
+        <StartPAFlow />
+      ) : (
+        <PlaceholderScreen screen={currentScreen} />
+      )}
     </div>
   );
 }

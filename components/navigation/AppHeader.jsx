@@ -10,7 +10,7 @@ import { Button } from '../core/Button.jsx';
  */
 export function AppHeader({
   actions = [{ icon: 'moon', label: 'Sleep Order' }, { icon: 'comment', label: 'Order Insights' }],
-  user = { initials: 'P' }, theme = 'brand', logo = 'PHIL', style = {}, ...rest
+  user = { initials: 'P' }, theme = 'brand', logo = 'PHIL', onMenuClick, style = {}, ...rest
 }) {
   const brand = theme === 'brand';
 
@@ -26,7 +26,6 @@ export function AppHeader({
       }}
       {...rest}
     >
-      {/* Centered content — matches Figma's 1316px centered inner frame */}
       <div style={{
         maxWidth: 1316,
         margin: '0 auto',
@@ -37,14 +36,31 @@ export function AppHeader({
         justifyContent: 'space-between',
         boxSizing: 'border-box',
       }}>
-        {/* Wordmark */}
-        <span style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 'var(--weight-extrabold)',
-          fontSize: 26,
-          letterSpacing: '0.5px',
-          color: brand ? 'var(--neutral-0)' : 'var(--color-text-default)',
-        }}>{logo}</span>
+        {/* Left: menu toggle + wordmark */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {onMenuClick && (
+            <button onClick={onMenuClick} style={{
+              width: 32, height: 32, borderRadius: 6, border: 'none', cursor: 'pointer',
+              display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
+              justifyContent: 'center', gap: 4,
+              background: 'color-mix(in srgb, var(--neutral-0) 14%, transparent)',
+              transition: 'background 150ms ease', flexShrink: 0, padding: 0,
+            }}
+              onMouseEnter={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--neutral-0) 22%, transparent)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'color-mix(in srgb, var(--neutral-0) 14%, transparent)'}
+            >
+              {[0,1,2].map(i => (
+                <span key={i} style={{ width: 14, height: 1.5, borderRadius: 2, background: 'var(--neutral-0)', display: 'block' }} />
+              ))}
+            </button>
+          )}
+          <span style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 'var(--weight-extrabold)',
+            fontSize: 26, letterSpacing: '0.5px',
+            color: brand ? 'var(--neutral-0)' : 'var(--color-text-default)',
+          }}>{logo}</span>
+        </div>
 
         {/* Right side: action pills + avatar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>

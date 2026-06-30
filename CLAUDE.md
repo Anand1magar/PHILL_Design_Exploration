@@ -5,6 +5,15 @@
 
 ---
 
+## Figma Asset Rule
+
+When pulling any asset (icon, image, SVG) from Figma MCP:
+
+1. Download it locally with `curl` — NEVER leave `figma.com/api/mcp/asset/...` URLs in code (they expire in 7 days)
+2. Save SVGs to `assets/Icons/`, images (PNG/JPG) to `assets/images/`
+3. Import SVGs with `?raw` and render via `dangerouslySetInnerHTML` — import images as URLs
+4. Use descriptive filenames: `edit-document.svg`, `insurance-card.png`, not `asset-abc123.png`
+
 ## Design-to-Code Rules
 
 When implementing any Figma design (MCP, screenshot, or URL), **always**:
@@ -20,6 +29,10 @@ When implementing any Figma design (MCP, screenshot, or URL), **always**:
 - Never use raw `<button>` — use `<Button intent="..." size="...">` from `components/core/Button.jsx`
 - Never use bare `<a>` tags for actions — use `<Button intent="link">`
 - Use `style` prop to override specific values that don't map to a token
+- For partial-opacity color values, use `color-mix()` with the token — never hardcode rgba with raw numbers:
+  - `rgba(255,255,255,0.1)` → `color-mix(in srgb, var(--neutral-0) 10%, transparent)`
+  - `rgba(0,0,0,0.85)` → `color-mix(in srgb, var(--neutral-1000) 85%, transparent)`
+  - White text on dark bg → `var(--color-text-inverse)` not `#fff`
 
 ## Button Intents (quick ref)
 | Intent | Use case |
