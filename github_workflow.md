@@ -79,3 +79,9 @@ Just describe the problem to Claude in plain English. For example:
 > "I accidentally deleted something"
 
 Claude will diagnose and fix it.
+
+## Starting your day with Claude
+
+1. Get the latest changes from GitHub and start a new branch called `isa/today-task`
+2. Save and push your changes with the message: "updated button color"
+3. Review and create a pull request for your changes
