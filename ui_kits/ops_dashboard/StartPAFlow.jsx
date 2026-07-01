@@ -123,7 +123,7 @@ function RadioQuestion({ label, value, onChange }) {
         {['Yes', 'No'].map(opt => (
           <Radio
             key={opt} name={label} value={opt} label={opt}
-            checked={value === opt} onChange={() => onChange(opt)}
+            checked={value === opt} onChange={(v) => onChange(v)}
           />
         ))}
       </div>
@@ -177,7 +177,7 @@ function HeroPanel() {
   const [q2, setQ2]             = useState('');
   const [success, setSuccess]   = useState(false);
 
-  const isCMM  = provider === 'CoverMyMeds';
+  const isCMM  = paType === 'CoverMyMeds';
   const ready  = provider && paType && (!isCMM || (cmmKey && q1 && q2));
 
   return (
@@ -204,10 +204,10 @@ function HeroPanel() {
         <div style={{ flex: '1 1 auto', maxWidth: 450, padding: 32, backgroundColor: 'var(--blue-50)', display: 'flex', flexDirection: 'column', gap: 24, overflowY: 'auto' }}>
           <Select label="Select Insurance Provider" value={provider}
             onChange={(e) => setProvider(e.target.value)}
-            options={['United Healthcare CM', 'Aetna', 'Cigna', 'Medicare Part D Express Scripts', 'CoverMyMeds']} />
+            options={['United Healthcare CM', 'Aetna', 'Cigna', 'Medicare Part D Express Scripts']} />
           <Select label="Prior Authorization Type" value={paType}
             onChange={(e) => setPaType(e.target.value)} placeholder="Select Prior Authorization Type"
-            options={['CMM', 'Verbal', 'Weblink']} />
+            options={['CMM', 'Verbal', 'Weblink', 'CoverMyMeds']} />
 
           {/* CoverMyMeds extra fields */}
           {isCMM && (
@@ -249,7 +249,7 @@ export default function StartPAFlow() {
       <main style={{ flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
         <HeroPanel />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button intent="link" size="md" onClick={() => setShowDetails(v => !v)}>
+          <Button intent="link" size="lg" onClick={() => setShowDetails(v => !v)}>
             {showDetails ? 'Hide Details' : 'Show Details'}
           </Button>
         </div>
@@ -262,7 +262,7 @@ export default function StartPAFlow() {
             <div style={{
               display: 'flex', flexDirection: 'column', gap: 20,
               opacity: showDetails ? 1 : 0,
-              transform: showDetails ? 'translateY(0)' : 'translateY(-10px)',
+              transform: showDetails ? 'none' : 'translateY(-10px)',
               transition: 'opacity 260ms ease, transform 260ms ease',
             }}>
               <DetailRow />

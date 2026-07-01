@@ -13,7 +13,7 @@ import { DetailRow, PAQueue, MedRow } from './shared.jsx';
 const SUB = 'var(--color-text-secondary)';
 
 // ── Current PA section ────────────────────────────────────────────
-function CurrentPASection() {
+function CurrentPASection({ onNavigateTo }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <span style={{ font: '700 12px/16px var(--font-body)', letterSpacing: '.6px', textTransform: 'uppercase', color: SUB }}>
@@ -40,7 +40,7 @@ function CurrentPASection() {
         <div style={{ height: 1, background: 'var(--color-border-muted)' }} />
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Button intent="negativeSecondary" size="sm">Stop PA</Button>
-          <Button intent="link" size="sm">Reset or Change Type</Button>
+          <Button intent="link" size="lg" onClick={() => onNavigateTo && onNavigateTo(1)}>Reset or Change Type</Button>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ function Question({ label, name, options, value, onChange }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {options.map(opt => (
           <Radio key={opt} name={name} value={opt} label={opt}
-            checked={value === opt} onChange={() => onChange(opt)} />
+            checked={value === opt} onChange={(v) => onChange(v)} />
         ))}
       </div>
     </div>
@@ -103,7 +103,7 @@ function ResultCard({ tone, iconName, title, message, children, onReset }) {
       </div>
       {children}
       <div style={{ flex: 1 }} />
-      <Button intent="secondary" size="md" onClick={onReset} style={{ alignSelf: 'center', minWidth: 120 }}>
+      <Button intent="secondary" size="lg" onClick={onReset} style={{ alignSelf: 'center', minWidth: 140 }}>
         Back
       </Button>
     </div>
@@ -111,7 +111,7 @@ function ResultCard({ tone, iconName, title, message, children, onReset }) {
 }
 
 // ── Hero ──────────────────────────────────────────────────────────
-function HeroPanel() {
+function HeroPanel({ onNavigateTo }) {
   const [q1, setQ1]           = useState('');
   const [q2, setQ2]           = useState('');
   const [outcome, setOutcome] = useState('');
@@ -261,7 +261,7 @@ function HeroPanel() {
             <div style={{ marginTop: 2, font: '400 16px/24px var(--font-body)', color: SUB }}>Order Number: <span style={{ color: 'var(--neutral-900)' }}>1853-6203-7047</span></div>
             <div style={{ marginTop: 10, font: '700 12px/20px var(--font-body)', color: 'var(--color-text-default)' }}>PhilRx AZ</div>
           </div>
-          <CurrentPASection />
+          <CurrentPASection onNavigateTo={onNavigateTo} />
         </div>
 
         {/* Right */}
@@ -274,14 +274,14 @@ function HeroPanel() {
 }
 
 // ── Page ──────────────────────────────────────────────────────────
-export default function CheckResultsFlow() {
+export default function CheckResultsFlow({ onNavigateTo }) {
   const [showDetails, setShowDetails] = useState(true);
   return (
     <div style={{ flex: 1, display: 'flex', minHeight: 0, width: '100%', maxWidth: 1392, margin: '0 auto' }}>
       <main style={{ flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
-        <HeroPanel />
+        <HeroPanel onNavigateTo={onNavigateTo} />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button intent="link" size="md" onClick={() => setShowDetails(v => !v)}>
+          <Button intent="link" size="lg" onClick={() => setShowDetails(v => !v)}>
             {showDetails ? 'Hide Details' : 'Show Details'}
           </Button>
         </div>
@@ -294,7 +294,7 @@ export default function CheckResultsFlow() {
             <div style={{
               display: 'flex', flexDirection: 'column', gap: 20,
               opacity: showDetails ? 1 : 0,
-              transform: showDetails ? 'translateY(0)' : 'translateY(-10px)',
+              transform: showDetails ? 'none' : 'translateY(-10px)',
               transition: 'opacity 260ms ease, transform 260ms ease',
             }}>
               <DetailRow />

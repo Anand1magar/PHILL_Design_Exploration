@@ -388,7 +388,7 @@ export default function PADashboard() {
       ) : activeScreen === 2 ? (
         <StartPAFlow />
       ) : activeScreen === 3 ? (
-        <CheckResultsFlow />
+        <CheckResultsFlow onNavigateTo={setActiveScreen} />
       ) : (
         <PlaceholderScreen screen={currentScreen} />
       )}

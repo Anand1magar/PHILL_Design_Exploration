@@ -469,14 +469,74 @@ export function PAQueue() {
   );
 }
 
+// ── Edit Medication Drawer ────────────────────────────────────────
+export function EditMedicationDrawer({ open, onClose }) {
+  const [form, setForm] = useState({
+    drugName: 'TYRVAYA (VARENICLINE SOLUTION) 0.03MG NASAL SPRAY',
+    rxNumber: '9941120-A', ndc: '73516-0001-01', drugType: 'Generic',
+    quantity: '4', daySupply: '30', refillWritten: '11',
+    fillsCompleted: '0-6', packageSize: '4', controlled: '—',
+    icd10: 'I10', daw: '1', manufacturer: 'Oyster Point',
+    sig: 'USE ONE SPRAY IN EACH NOSTRIL TWICE DAILY APPROXIMATELY 12 HOURS APART',
+  });
+  const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
+
+  return (
+    <>
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, background: 'color-mix(in srgb, var(--neutral-1000) 30%, transparent)',
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity 250ms ease', zIndex: 200,
+      }} />
+      <div style={{
+        position: 'fixed', top: 0, right: 0, bottom: 0, width: 420,
+        background: 'var(--color-sidebar-bg)', zIndex: 201, overflowY: 'auto',
+        boxShadow: `-4px 0 24px color-mix(in srgb, var(--neutral-1000) 12%, transparent)`,
+        transform: open ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 280ms cubic-bezier(0.4, 0, 0.2, 1)',
+        display: 'flex', flexDirection: 'column', paddingTop: 24,
+      }}>
+        <div style={{ padding: '0 24px 24px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 8, flexShrink: 0, background: 'var(--blue-600)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="pill" size={20} color="#fff" />
+          </div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: 'var(--color-text-default)' }}>Edit Medication</div>
+        </div>
+        <div style={{ padding: '0 16px', display: 'flex', flexDirection: 'column' }}>
+          <DrawerField label="Drug Name"       value={form.drugName}       onChange={set('drugName')} />
+          <DrawerField label="RX Number"       value={form.rxNumber}       onChange={set('rxNumber')} />
+          <DrawerField label="NDC"             value={form.ndc}            onChange={set('ndc')} />
+          <DrawerField label="Drug Type"       value={form.drugType}       onChange={set('drugType')} />
+          <DrawerField label="Quantity"        value={form.quantity}       onChange={set('quantity')} />
+          <DrawerField label="Day of Supply"   value={form.daySupply}      onChange={set('daySupply')} />
+          <DrawerField label="Refill Written"  value={form.refillWritten}  onChange={set('refillWritten')} />
+          <DrawerField label="Fills Completed" value={form.fillsCompleted} onChange={set('fillsCompleted')} />
+          <DrawerField label="Package Size"    value={form.packageSize}    onChange={set('packageSize')} />
+          <DrawerField label="Controlled"      value={form.controlled}     onChange={set('controlled')} />
+          <DrawerField label="ICD10 Code"      value={form.icd10}          onChange={set('icd10')} />
+          <DrawerField label="DAW Code"        value={form.daw}            onChange={set('daw')} />
+          <DrawerField label="Manufacturer"    value={form.manufacturer}   onChange={set('manufacturer')} />
+          <DrawerField label="SIG"             value={form.sig}            onChange={set('sig')} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8, paddingBottom: 32 }}>
+            <Button intent="primary" size="lg" fullWidth onClick={onClose}>Save</Button>
+            <Button intent="link" size="lg" onClick={onClose} style={{ alignSelf: 'center', color: 'var(--neutral-700)' }}>Close</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 // ── Medication row — shared source of truth across all pages ──────
 export function MedRow() {
   const SUB = 'var(--color-text-secondary)';
+  const [medEditOpen, setMedEditOpen] = useState(false);
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
+      <EditMedicationDrawer open={medEditOpen} onClose={() => setMedEditOpen(false)} />
       <Card
         title="Medication Information"
-        action={<Button intent="link" size="md">Edit</Button>}
+        action={<Button intent="link" size="md" onClick={() => setMedEditOpen(true)}>Edit</Button>}
         onCopy={() => {}}
       >
         <KeyValue label="Drug Name" value="TYRVAYA (VARENICLINE SOLUTION) 0.03MG NASAL SPRAY" variant="title" />
