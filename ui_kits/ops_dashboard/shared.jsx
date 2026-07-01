@@ -476,7 +476,7 @@ export function MedRow() {
     <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 20, alignItems: 'start' }}>
       <Card
         title="Medication Information"
-        action={<Button intent="link" size="md">Edit Details</Button>}
+        action={<Button intent="link" size="md">Edit</Button>}
         onCopy={() => {}}
       >
         <KeyValue label="Drug Name" value="TYRVAYA (VARENICLINE SOLUTION) 0.03MG NASAL SPRAY" variant="title" />

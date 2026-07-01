@@ -1,7 +1,7 @@
 /* PHIL Ops — Start PA Flow
    Differences from PADashboard: peek carousel for Previous PAs, extra medication fields,
    richer PA Queue feed. Everything else identical — all shared components reused. */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card }        from '../../components/layout/Card.jsx';
 import { KeyValue }    from '../../components/layout/KeyValue.jsx';
 import { Tag }        from '../../components/core/Tag.jsx';
@@ -243,12 +243,33 @@ function HeroPanel() {
 
 // ── Page (no AppHeader — parent provides it) ──────────────────────
 export default function StartPAFlow() {
+  const [showDetails, setShowDetails] = useState(true);
   return (
     <div style={{ flex: 1, display: 'flex', minHeight: 0, width: '100%', maxWidth: 1392, margin: '0 auto' }}>
       <main style={{ flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
         <HeroPanel />
-        <DetailRow />
-        <MedRow />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button intent="link" size="md" onClick={() => setShowDetails(v => !v)}>
+            {showDetails ? 'Hide Details' : 'Show Details'}
+          </Button>
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateRows: showDetails ? '1fr' : '0fr',
+          transition: 'grid-template-rows 340ms cubic-bezier(0.4, 0, 0.2, 1)',
+        }}>
+          <div style={{ overflow: 'hidden' }}>
+            <div style={{
+              display: 'flex', flexDirection: 'column', gap: 20,
+              opacity: showDetails ? 1 : 0,
+              transform: showDetails ? 'translateY(0)' : 'translateY(-10px)',
+              transition: 'opacity 260ms ease, transform 260ms ease',
+            }}>
+              <DetailRow />
+              <MedRow />
+            </div>
+          </div>
+        </div>
       </main>
       <PAQueue />
     </div>
